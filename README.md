@@ -1,51 +1,29 @@
-📊 PhonePe Pulse Data Dashboard
-A full-stack data visualization project that extracts, processes, and displays rich insights from the PhonePe Pulse dataset using MySQL, Python, and Streamlit.
+# 📊 PhonePe Pulse Data Dashboard
 
-🚀 Project Description
-This project provides an interactive dashboard to explore financial and insurance data such as:
+An end-to-end data visualization project using PhonePe Pulse data, MySQL, and Streamlit to analyze and display financial and insurance metrics across India.
 
-Transaction trends
+---
 
-User distribution by device
+## 📌 Overview
 
-Insurance activity
+This project extracts structured JSON data from the [PhonePe Pulse](https://www.phonepe.com/pulse/) GitHub repository, stores it in a MySQL database, and visualizes it through an interactive Streamlit dashboard.
 
-State and district-level insights
+---
 
-The pipeline parses JSON data from the PhonePe Pulse GitHub repository, loads it into a MySQL database, and provides an easy-to-use front-end via a Streamlit app.
+## 🧰 Tech Stack
 
-📦 Features
-✅ Clean and modular data ingestion using batch inserts
+- **Backend:** MySQL
+- **Scripting:** Python
+- **Data Parsing:** JSON, `os`, `tqdm`
+- **Visualization:** Plotly, Streamlit
+- **Dashboard:** Streamlit UI with filters and tabs
 
-✅ Dynamic filtering by year, quarter, and state
+---
 
-✅ Charts using Plotly (bar, pie, and choropleths)
+## 📁 Project Structure
 
-✅ Metrics for:
-
-Transactions (count and amount)
-
-Registered users and mobile brands
-
-Insurance policies and value
-
-✅ Top states/districts/pincodes visualization
-
-🌐 Extensible structure for geographic map layers (commented in dashboard for future enhancements)
-
-🛠️ Tech Stack
-Layer	Technology
-Backend DB	MySQL
-Data Parsing	Python (JSON + os, tqdm)
-Dashboard	Streamlit
-Visualization	Plotly
-
-📁 Project Structure
-bash
-Copy
-Edit
-📦 phonepe-dashboard/
-├── pulse/data/                    # Raw JSON data (PhonePe Pulse clone)
-├── corrected.py                  # Data loading and MySQL ingestion
-├── streamlet.py                  # Streamlit dashboard app
-├── README.md                     # Project documentation
+project/
+├── corrected.py # Data loader script to populate MySQL tables
+├── streamlet.py # Streamlit app for interactive dashboard
+├── pulse/data/ # Folder containing PhonePe Pulse JSON data
+├── README.md # Project documentation (this file)
