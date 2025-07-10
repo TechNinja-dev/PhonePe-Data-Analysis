@@ -11,15 +11,9 @@ def connect_db():
         password="",
         database="phonepe"
     )
-
-def drop_tables(cursor):
-    tables = [
-        'aggregated_transaction', 'aggregated_user', 'aggregated_insurance',
-        'map_user', 'map_map', 'map_insurance',
-        'top_user', 'top_map', 'top_insurance'
-    ]
-    for table in tables:
-        cursor.execute(f"DROP TABLE IF EXISTS {table}")
+        # 'aggregated_transaction'  'aggregated_user'  'aggregated_insurance'
+        # 'map_user'  'map_map'  'map_insurance'
+        # 'top_user'  'top_map'  'top_insurance'
 
 def create_tables(cursor):
     cursor.execute("""
@@ -561,50 +555,43 @@ def insert_top_insurance(cursor, base_path):
             INSERT INTO top_insurance VALUES (%s, %s, %s, %s, %s, %s, %s)
         """, batch)
 
-# 🏁 Run everything
-if __name__ == "__main__":
-    base_path = "pulse/data"
-    conn = connect_db()
-    cursor = conn.cursor()
+base_path = "pulse/data"
+conn = connect_db()
+cursor = conn.cursor()
 
-    # First drop existing tables
-    print("🗑️ Dropping existing tables...")
-    drop_tables(cursor)
-            
-    # Create all tables with new schema
-    print("🛠️ Creating tables with updated schema...")
-    create_tables(cursor)
-            
-    # Then load ALL data types:
-    print("⏳ Loading aggregated transaction data...")
-    insert_aggregated_transaction(cursor, base_path)
-            
-    print("⏳ Loading aggregated user data...")
-    insert_aggregated_user(cursor, base_path)
-            
-    print("⏳ Loading aggregated insurance data...")
-    insert_aggregated_insurance(cursor, base_path)
-            
-    print("⏳ Loading map transaction data...")
-    insert_map_transaction(cursor, base_path)
-            
-    print("⏳ Loading map user data...")
-    insert_map_user(cursor, base_path)
-            
-    print("⏳ Loading map insurance data...")
-    insert_map_insurance(cursor, base_path)
-            
-    print("⏳ Loading top transaction data...")
-    insert_top_transaction(cursor, base_path)
-            
-    print("⏳ Loading top user data...")
-    insert_top_user(cursor, base_path)
-            
-    print("⏳ Loading top insurance data...")
-    insert_top_insurance(cursor, base_path)
-            
-    conn.commit()
-    print("✅ All data loaded into MySQL successfully.")
-    cursor.close()
-    conn.close()
-    
+        
+print("🛠️ Creating tables with updated schema...")
+create_tables(cursor)
+        
+
+print("⏳ Loading aggregated transaction data...")
+insert_aggregated_transaction(cursor, base_path)
+        
+print("⏳ Loading aggregated user data...")
+insert_aggregated_user(cursor, base_path)
+        
+print("⏳ Loading aggregated insurance data...")
+insert_aggregated_insurance(cursor, base_path)
+        
+print("⏳ Loading map transaction data...")
+insert_map_transaction(cursor, base_path)
+        
+print("⏳ Loading map user data...")
+insert_map_user(cursor, base_path)
+        
+print("⏳ Loading map insurance data...")
+insert_map_insurance(cursor, base_path)
+        
+print("⏳ Loading top transaction data...")
+insert_top_transaction(cursor, base_path)
+        
+print("⏳ Loading top user data...")
+insert_top_user(cursor, base_path)
+        
+print("⏳ Loading top insurance data...")
+insert_top_insurance(cursor, base_path)
+        
+conn.commit()
+print("✅ All data loaded into MySQL successfully.")
+cursor.close()
+conn.close()

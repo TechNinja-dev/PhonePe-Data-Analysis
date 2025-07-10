@@ -24,8 +24,8 @@ This project extracts JSON data from the [PhonePe Pulse GitHub](https://github.c
 
 ```
 project/
-├── corrected.py         # Data loader script to populate MySQL tables
-├── streamlet.py         # Streamlit app for interactive dashboard
+├── data_load.py         # Data loader script to populate MySQL tables
+├── dash.py         # Streamlit app for interactive dashboard
 ├── pulse/data/          # Folder containing PhonePe Pulse JSON data
 ├── README.md            # Project documentation (this file)
 ```
@@ -56,7 +56,7 @@ Login to MySQL and run:
 CREATE DATABASE phonepe;
 ```
 
-Update the DB credentials in both `corrected.py` and `streamlet.py` if necessary.
+Update the DB credentials in both `data_load.py` and `dash.py` if necessary.
 
 ### 3. Install Python Dependencies
 
@@ -67,18 +67,17 @@ pip install streamlit mysql-connector-python pandas plotly tqdm
 ### 4. Load Data into MySQL
 
 ```bash
-python corrected.py
+python data_load.py
 ```
 
 This will:
-- Drop old tables (if any)
 - Create new tables
 - Load all JSON data into MySQL using efficient batch inserts
 
 ### 5. Launch the Dashboard
 
 ```bash
-streamlit run streamlet.py
+streamlit run dash.py
 ```
 
 ---
